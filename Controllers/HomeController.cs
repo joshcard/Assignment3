@@ -28,6 +28,19 @@ namespace Assignment3.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult EnterMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EnterMovie(EnterMovie enterMovie)
+        {
+            return View();
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
