@@ -23,13 +23,10 @@ namespace Assignment3.Models
         [Required]
         public string Rating { get; set; }
 
-        //For some reason this is acting like a [Required] field. Probably because it's boolean.
-        public bool Edited { get; set; }
+        public bool? Edited { get; set; }
 
         public string LentTo { get; set; }
         
-        //[MinLength(0)]
-        //[MaxLength(25, ErrorMessage = "Note must be 25 characters or less")]
         [StringLength(25, ErrorMessage = "Note must be 25 characters or less")]
         public string Notes { get; set; }
     }
