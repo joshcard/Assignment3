@@ -18,16 +18,19 @@
             <tbody>
                 @foreach (Assignment3.Models.EnterMovie x in Model)
                 {
-                    <tr>
-                        <td>@x.Category</td>
-                        <td>@x.Title</td>
-                        <td>@x.Year</td>
-                        <td>@x.Director</td>
-                        <td>@x.Rating</td>
-                        <td>@x.Edited</td>
-                        <td>@x.LentTo</td>
-                        <td>@x.Notes</td>
-                    </tr>
+                    if (x.Title.ToUpper() != "INDEPENDENCE DAY")
+                    {
+                        <tr>
+                            <td>@x.Category</td>
+                            <td>@x.Title</td>
+                            <td>@x.Year</td>
+                            <td>@x.Director</td>
+                            <td>@x.Rating</td>
+                            <td>@x.Edited</td>
+                            <td>@x.LentTo</td>
+                            <td>@x.Notes</td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>

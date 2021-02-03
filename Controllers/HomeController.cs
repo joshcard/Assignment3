@@ -27,11 +27,7 @@ namespace Assignment3.Controllers
         {
             return View();
         }
-
-        public IActionResult MovieList()
-        {
-            return View(TempStorage.Movies);
-        }
+        
 
         [HttpGet]
         public IActionResult EnterMovie()
@@ -43,7 +39,13 @@ namespace Assignment3.Controllers
         public IActionResult EnterMovie(EnterMovie enterMovie)
         {
             TempStorage.AddMovie(enterMovie);
-            return View("MovieList", enterMovie);
+            return View("MovieList", TempStorage.Movies);
+
+        }
+
+        public IActionResult MovieList()
+        {
+            return View(TempStorage.Movies);
         }
 
 
