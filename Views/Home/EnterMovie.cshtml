@@ -5,8 +5,10 @@
     ViewBag.Title = "Enter Movie Info";
 }
 
+<!--bring in the EnterMovie model-->
 @model Assignment3.Models.EnterMovie
 
+<!--form to gather all of the movie info-->
 <form asp-action="EnterMovie" method="post">
     <div>
         <label asp-for="Category">Category:</label>

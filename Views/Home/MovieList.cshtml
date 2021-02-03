@@ -5,6 +5,7 @@
     ViewBag.Title = "Movie List";
 }
 
+<!--Bringing in the IEnumerable-->
 @model IEnumerable<Assignment3.Models.EnterMovie>
 
 <center>
@@ -15,9 +16,11 @@
                 <tr><th>Category</th>&nbsp;<th>Title</th>&nbsp;<th>Year</th>&nbsp;<th>Director</th>&nbsp;<th>Rating</th>&nbsp;<th>Edited</th>&nbsp;<th>Lent To</th>&nbsp;<th>Notes</th></tr>
             </thead>
 
+            <!--foreach loop to display all of the movies entered during that session-->
             <tbody>
                 @foreach (Assignment3.Models.EnterMovie x in Model)
                 {
+                    //If statement to make sure that the movie isn't independence day
                     if (x.Title.ToUpper() != "INDEPENDENCE DAY")
                     {
                         <tr>

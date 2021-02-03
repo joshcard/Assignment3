@@ -23,26 +23,38 @@ namespace Assignment3.Controllers
             return View();
         }
 
+        //Points to the MyPodcasts page
         public IActionResult MyPodcasts()
         {
             return View();
         }
         
-
+        //for a GET request on the EnterMovie page
         [HttpGet]
         public IActionResult EnterMovie()
         {
             return View();
         }
 
+        //for a POST on the EnterMovie page
+        //once the form is inputted it takes the user to the movie list page and 
+        //displays the movies available as well as the movie they just entered
         [HttpPost]
         public IActionResult EnterMovie(EnterMovie enterMovie)
         {
-            TempStorage.AddMovie(enterMovie);
-            return View("MovieList", TempStorage.Movies);
+            if (ModelState.IsValid)
+            { 
+                TempStorage.AddMovie(enterMovie);
+                return View("MovieList", TempStorage.Movies);
+            }
+            else
+            {
+                return View();
+            }
 
         }
 
+        //points to the movie list page if the user goes straight to the page without entering a movie to get there
         public IActionResult MovieList()
         {
             return View(TempStorage.Movies);
