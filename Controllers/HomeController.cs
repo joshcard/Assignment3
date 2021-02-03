@@ -42,6 +42,7 @@ namespace Assignment3.Controllers
         [HttpPost]
         public IActionResult EnterMovie(EnterMovie enterMovie)
         {
+            //Make sure the form was filled correctly. Display errors if not.
             if (ModelState.IsValid)
             { 
                 TempStorage.AddMovie(enterMovie);
