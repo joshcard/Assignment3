@@ -13,9 +13,12 @@ namespace Assignment3.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private IMovieRepository _repository;
+
+        public HomeController(ILogger<HomeController> logger, IMovieRepository repository)
         {
             _logger = logger;
+            _repository = repository;
         }
 
         public IActionResult Index()
@@ -40,13 +43,12 @@ namespace Assignment3.Controllers
         //once the form is inputted it takes the user to the movie list page and 
         //displays the movies available as well as the movie they just entered
         [HttpPost]
-        public IActionResult EnterMovie(EnterMovie enterMovie)
+        public IActionResult EnterMovie(Movie movie)
         {
             //Make sure the form was filled correctly. Display errors if not.
             if (ModelState.IsValid)
             { 
-                TempStorage.AddMovie(enterMovie);
-                return View("MovieList", TempStorage.Movies);
+                return View("MovieList", movie);
             }
             else
             {

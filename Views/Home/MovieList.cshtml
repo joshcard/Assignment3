@@ -1,12 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewBag.Title = "Movie List";
 }
 
 <!--Bringing in the IEnumerable-->
-@model IEnumerable<Assignment3.Models.EnterMovie>
+@model IEnumerable<Assignment3.Models.Movie>
 
 <center>
     <div>
@@ -27,7 +24,7 @@
 
             <!--foreach loop to display all of the movies entered during that session-->
             <tbody>
-                @foreach (Assignment3.Models.EnterMovie x in Model)
+                @foreach (var x in Model)
                 {
                     //If statement to make sure that the movie isn't independence day
                     if (x.Title.ToUpper() != "INDEPENDENCE DAY")

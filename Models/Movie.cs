@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assignment3.Models
 {
-    public class EnterMovie
+    public class Movie
     {
         //everything is required except for Edited, LentTo, and Notes
 

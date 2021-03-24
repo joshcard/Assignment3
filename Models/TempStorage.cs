@@ -7,11 +7,11 @@ namespace Assignment3.Models
 {
     public class TempStorage
     {
-        private static List<EnterMovie> movies = new List<EnterMovie>();
+        private static List<Movie> movies = new List<Movie>();
 
-        public static IEnumerable<EnterMovie> Movies => movies;
+        public static IEnumerable<Movie> Movies => movies;
 
-        public static void AddMovie(EnterMovie enterMovie)
+        public static void AddMovie(Movie enterMovie)
         {
             movies.Add(enterMovie);
         }
