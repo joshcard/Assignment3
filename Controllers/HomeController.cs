@@ -78,6 +78,18 @@ namespace Assignment3.Controllers
             return View(movies = context.Movies);
         }
 
+        [HttpPost]
+        public IActionResult DeleteMovie(long movieId, IEnumerable<Movie> movies)
+        {
+            context.Movies.Remove(context.Movies.First(m =>
+                m.MovieId == movieId));
+
+            context.SaveChanges();
+
+            movies = context.Movies;
+            return View("MovieList", movies );
+        }
+
 
         public IActionResult Privacy()
         {
