@@ -44,11 +44,7 @@
 
         <div>
             <label asp-for="Edited">Has the movie been edited?</label>
-            <select asp-for="Edited">
-                <option value="">Select One</option>
-                <option value="True">Yes</option>
-                <option value="False">No</option>
-            </select>
+            <input type="checkbox" value="true" asp-for="Edited" />
         </div>
 
         <div>

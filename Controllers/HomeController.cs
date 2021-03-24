@@ -61,19 +61,18 @@ namespace Assignment3.Controllers
             {
                 _context.Movies.Add(movie);
                 _context.SaveChanges();
-                return View("MovieList");
+                return View("MovieList", _repository.Movies);
             }
                 return View(movie);
 
         }
 
         //points to the movie list page if the user goes straight to the page without entering a movie to get there
-        public IActionResult MovieList(IQueryable<Movie> movie)
+        public IActionResult MovieList()
         {
-            return View(movie);
+            return View(_repository.Movies);
         }
 
-        [HttpPost]
         public IActionResult DeleteMovie(int movieId)
         {
             Movie movieDelete = _context.Movies.Where(x => x.MovieId == movieId).FirstOrDefault();
@@ -81,7 +80,7 @@ namespace Assignment3.Controllers
             _context.Movies.Remove(movieDelete);
             _context.SaveChanges();
 
-            return View("MovieList");
+            return View("MovieList", _repository.Movies);
         }
 
         [HttpGet]
@@ -109,7 +108,7 @@ namespace Assignment3.Controllers
 
                 _context.SaveChanges();
 
-                return View("MovieList");
+                return View("MovieList", _repository.Movies);
 
             }
             else

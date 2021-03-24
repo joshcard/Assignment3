@@ -28,7 +28,7 @@ namespace Assignment3.Models
         public string Rating { get; set; }
 
         //the ? makes it possible to leave this field blank in the form without errors
-        public bool? Edited { get; set; }
+        public bool Edited { get; set; }
 
         public string LentTo { get; set; }
         

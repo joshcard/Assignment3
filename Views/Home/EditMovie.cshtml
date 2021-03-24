@@ -6,7 +6,7 @@
 
 
 <form asp-action="EditMovie" method="post">
-    <input type="hidden" value="@Model.MovieId"
+    <input type="hidden" value="@Model.MovieId" name="MovieId"/>
 
     <div>
         <label asp-for="Category">Category:</label>
@@ -41,7 +41,7 @@
 
     <div>
         <label asp-for="Edited">Has the movie been edited?</label>
-        <input type="checkbox" value="True" asp-for="Edited" />
+        <input type="checkbox" value="true" asp-for="Edited" />
     </div>
 
     <div>
