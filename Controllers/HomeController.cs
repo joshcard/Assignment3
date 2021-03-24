@@ -1,4 +1,5 @@
 ﻿using Assignment3.Models;
+using Assignment3.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,12 +14,15 @@ namespace Assignment3.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private MovieSiteDbContext context { get; set; }
+        
         private IMovieRepository _repository;
 
-        public HomeController(ILogger<HomeController> logger, IMovieRepository repository)
+        public HomeController(ILogger<HomeController> logger, IMovieRepository repository, MovieSiteDbContext ctx)
         {
             _logger = logger;
             _repository = repository;
+            context = ctx;
         }
 
         public IActionResult Index()
@@ -60,7 +64,10 @@ namespace Assignment3.Controllers
         //points to the movie list page if the user goes straight to the page without entering a movie to get there
         public IActionResult MovieList()
         {
-            return View(TempStorage.Movies);
+            return View(new Movie
+            {
+                
+            });
         }
 
 
