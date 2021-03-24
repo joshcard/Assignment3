@@ -13,27 +13,27 @@
     <form asp-action="EnterMovie" method="post" >
         <div>
             <label asp-for="Category">Category:</label>
-            <input asp-for="Category" />
+            <input asp-for="Category" class="rounded"/>
         </div>
 
         <div>
             <label asp-for="Title">Title:</label>
-            <input asp-for="Title" />
+            <input asp-for="Title" class="rounded"/>
         </div>
 
         <div>
             <label asp-for="Year">Year:</label>
-            <input asp-for="Year" />
+            <input asp-for="Year" class="rounded"/>
         </div>
 
         <div>
             <label asp-for="Director">Director:</label>
-            <input asp-for="Director" />
+            <input asp-for="Director" class="rounded"/>
         </div>
 
         <div>
             <label asp-for="Rating">Rating:</label>
-            <select asp-for="Rating">
+            <select asp-for="Rating" class="rounded">
                 <option value="">Select One</option>
                 <option value="G">G</option>
                 <option value="PG">PG</option>
@@ -44,20 +44,20 @@
 
         <div>
             <label asp-for="Edited">Has the movie been edited?</label>
-            <input type="checkbox" value="true" asp-for="Edited" />
+            <input type="checkbox" value="true" asp-for="Edited" class="rounded"/>
         </div>
 
         <div>
             <label asp-for="LentTo">Who has the movie been lent to:</label>
-            <input asp-for="LentTo" />
+            <input asp-for="LentTo" class="rounded"/>
         </div>
 
         <div>
             <label asp-for="Notes">Notes:</label>
-            <input asp-for="Notes" />
+            <input asp-for="Notes" class="rounded"/>
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
 
         <div asp-validation-summary="All"></div>
     </form>
