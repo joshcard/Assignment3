@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace Assignment3.Models
 {
-                                     //why isnt this turning light green like inheritance normally does.
     public class EFMovieRepository : IMovieRepository
     {
         private MovieSiteDbContext _context;

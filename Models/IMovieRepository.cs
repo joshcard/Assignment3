@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Assignment3.Models
 {
-    public class IMovieRepository
+    public interface IMovieRepository
     {
         IQueryable<Movie> Movies { get; }
     }

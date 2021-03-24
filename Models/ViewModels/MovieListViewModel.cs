@@ -7,6 +7,6 @@ namespace Assignment3.Models.ViewModels
 {
     public class MovieListViewModel
     {
-        public Movie Movie { get; set; }
+        public IEnumerable<Movie> Movie { get; set; }
     }
 }

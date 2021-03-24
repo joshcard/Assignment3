@@ -47,12 +47,22 @@ namespace Assignment3.Controllers
         //once the form is inputted it takes the user to the movie list page and 
         //displays the movies available as well as the movie they just entered
         [HttpPost]
-        public IActionResult EnterMovie(Movie movie)
+        public IActionResult EnterMovie(Movie movie, IEnumerable<Movie> movies)
         {
+            var result = context.Movies.SingleOrDefault(m => m.MovieId == movie.MovieId);
+
+            /*if (result != null)
+            {
+                context.SaveChanges();
+            }*/
+
             //Make sure the form was filled correctly. Display errors if not.
             if (ModelState.IsValid)
-            { 
-                return View("MovieList", movie);
+            {
+                context.Add(movie);
+                context.SaveChanges();
+                movies = context.Movies;
+                return View("MovieList", movies);
             }
             else
             {
@@ -62,12 +72,10 @@ namespace Assignment3.Controllers
         }
 
         //points to the movie list page if the user goes straight to the page without entering a movie to get there
-        public IActionResult MovieList()
+        public IActionResult MovieList(IEnumerable<Movie> movies)
         {
-            return View(new Movie
-            {
-                
-            });
+
+            return View(movies = context.Movies);
         }
 
 

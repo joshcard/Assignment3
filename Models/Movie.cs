@@ -9,6 +9,8 @@ namespace Assignment3.Models
     public class Movie
     {
         //everything is required except for Edited, LentTo, and Notes
+        [Key]
+        public int MovieId { get; set; }
 
         [Required]
         public string Category { get; set; }

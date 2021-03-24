@@ -9,7 +9,7 @@ namespace Assignment3.Models
     public class MovieSiteDbContext : DbContext
     {
 
-        public MovieSiteDbContext (DbContextOptions<MovieSiteDbContext> options) : base (options)
+        public MovieSiteDbContext (DbContextOptions<MovieSiteDbContext> options) : base(options)
         {
 
         }
