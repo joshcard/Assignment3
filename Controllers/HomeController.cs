@@ -14,7 +14,7 @@ namespace Assignment3.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private MovieSiteDbContext context { get; set; }
+        private MovieSiteDbContext _context { get; set; }
         
         private IMovieRepository _repository;
 
@@ -22,7 +22,7 @@ namespace Assignment3.Controllers
         {
             _logger = logger;
             _repository = repository;
-            context = ctx;
+            _context = ctx;
         }
 
         public IActionResult Index()
@@ -47,68 +47,75 @@ namespace Assignment3.Controllers
         //once the form is inputted it takes the user to the movie list page and 
         //displays the movies available as well as the movie they just entered
         [HttpPost]
-        public IActionResult EnterMovie(Movie movie, IEnumerable<Movie> movies)
+        public IActionResult EnterMovie(Movie movie)
         {
-            var result = context.Movies.SingleOrDefault(m => m.MovieId == movie.MovieId);
+            //var result = _context.Movies.SingleOrDefault(m => m.MovieId == movie.MovieId);
 
             /*if (result != null)
             {
-                context.SaveChanges();
+                _context.SaveChanges();
             }*/
 
             //Make sure the form was filled correctly. Display errors if not.
             if (ModelState.IsValid)
             {
-                context.Add(movie);
-                context.SaveChanges();
-                movies = context.Movies;
-                return View("MovieList", movies);
+                _context.Movies.Add(movie);
+                _context.SaveChanges();
+                return View("MovieList");
             }
-            else
-            {
-                return View();
-            }
+                return View(movie);
 
         }
 
         //points to the movie list page if the user goes straight to the page without entering a movie to get there
-        public IActionResult MovieList(IEnumerable<Movie> movies)
+        public IActionResult MovieList(IQueryable<Movie> movie)
         {
-
-            return View(movies = context.Movies);
-        }
-
-        [HttpPost]
-        public IActionResult DeleteMovie(long movieId, IEnumerable<Movie> movies)
-        {
-            context.Movies.Remove(context.Movies.First(m =>
-                m.MovieId == movieId));
-
-            context.SaveChanges();
-
-            movies = context.Movies;
-            return View("MovieList", movies );
-        }
-
-        [HttpGet]
-        public IActionResult EditMovie(Movie movie)
-        {
-            ViewBag.MovieCategory = movie.Category;
-            ViewBag.MovieTitle = movie.Title;
-            ViewBag.MovieYear = movie.Year;
-            ViewBag.MovieDirector = movie.Director;
-            ViewBag.MovieRating = movie.Rating;
-            ViewBag.MovieEdited = movie.Edited;
-            ViewBag.MovieLentTo = movie.LentTo;
-            ViewBag.MovieNotes = movie.Notes;
-
             return View(movie);
         }
 
         [HttpPost]
-        public IActionResult EditMovie()
+        public IActionResult DeleteMovie(int movieId)
         {
-            return View();
+            Movie movieDelete = _context.Movies.Where(x => x.MovieId == movieId).FirstOrDefault();
+
+            _context.Movies.Remove(movieDelete);
+            _context.SaveChanges();
+
+            return View("MovieList");
+        }
+
+        [HttpGet]
+        public IActionResult EditMovie(int Id)
+        {
+            Movie tempMovie = _context.Movies.Where(x => x.MovieId == Id).FirstOrDefault();
+            return View(tempMovie);
+        }
+
+        [HttpPost]
+        public IActionResult EditMovie(Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                Movie movieUpdate = _context.Movies.Where(x => x.MovieId == movie.MovieId).FirstOrDefault();
+
+                movieUpdate.Category = movie.Category;
+                movieUpdate.Title = movie.Title;
+                movieUpdate.Year = movie.Year;
+                movieUpdate.Director = movie.Director;
+                movieUpdate.Rating = movie.Rating;
+                movieUpdate.Edited = movie.Edited;
+                movieUpdate.LentTo = movie.LentTo;
+                movieUpdate.Notes = movie.Notes;
+
+                _context.SaveChanges();
+
+                return View("MovieList");
+
+            }
+            else
+            {
+                return View(movie);
+            }
         }
 
 
