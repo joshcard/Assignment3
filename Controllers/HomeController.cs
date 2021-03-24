@@ -90,6 +90,27 @@ namespace Assignment3.Controllers
             return View("MovieList", movies );
         }
 
+        [HttpGet]
+        public IActionResult EditMovie(Movie movie)
+        {
+            ViewBag.MovieCategory = movie.Category;
+            ViewBag.MovieTitle = movie.Title;
+            ViewBag.MovieYear = movie.Year;
+            ViewBag.MovieDirector = movie.Director;
+            ViewBag.MovieRating = movie.Rating;
+            ViewBag.MovieEdited = movie.Edited;
+            ViewBag.MovieLentTo = movie.LentTo;
+            ViewBag.MovieNotes = movie.Notes;
+
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult EditMovie()
+        {
+            return View();
+        }
+
 
         public IActionResult Privacy()
         {
