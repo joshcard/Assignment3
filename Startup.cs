@@ -28,11 +28,13 @@ namespace Assignment3
         {
             services.AddControllersWithViews();
 
+            //Add the service for the database
             services.AddDbContext<MovieSiteDbContext>(options =>
             {
                 options.UseSqlite(Configuration["ConnectionStrings:MovieSiteConnection"]);
             });
 
+            //Include the repositories
             services.AddScoped<IMovieRepository, EFMovieRepository>();
         }
 

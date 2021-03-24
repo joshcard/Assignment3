@@ -40,16 +40,20 @@
                     <td>@x.Edited</td>
                     <td>@x.LentTo</td>
                     <td>@x.Notes</td>
+
+                    <!--button for deleting a movie-->
                     <td>
                         <form>
                             <input type="hidden" name="MovieId" value="@x.MovieId" />
-                            <input type="submit" asp-action="DeleteMovie" value="Delete" />
+                            <input type="submit" asp-action="DeleteMovie" value="Delete" class="btn btn-sm btn-danger" />
                         </form>
                     </td>
+
+                    <!--button for editing a movie-->
                     <td>
                         <form method="get">
                             <input type="hidden" name="Id" value="@x.MovieId" />
-                            <input type="submit" asp-action="EditMovie" value="Edit" />
+                            <input type="submit" asp-action="EditMovie" value="Edit" class="btn btn-sm btn-primary" />
                         </form>
                     </td>
                 </tr>

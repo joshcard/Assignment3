@@ -1,5 +1,4 @@
 ﻿using Assignment3.Models;
-using Assignment3.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,10 +13,13 @@ namespace Assignment3.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        //private instance of the DbContext
         private MovieSiteDbContext _context { get; set; }
         
+        //private instance of the IMovieRepository
         private IMovieRepository _repository;
 
+        //Controller
         public HomeController(ILogger<HomeController> logger, IMovieRepository repository, MovieSiteDbContext ctx)
         {
             _logger = logger;
@@ -25,6 +27,7 @@ namespace Assignment3.Controllers
             _context = ctx;
         }
 
+        //Action for the index page
         public IActionResult Index()
         {
             return View();
@@ -49,16 +52,10 @@ namespace Assignment3.Controllers
         [HttpPost]
         public IActionResult EnterMovie(Movie movie)
         {
-            //var result = _context.Movies.SingleOrDefault(m => m.MovieId == movie.MovieId);
-
-            /*if (result != null)
-            {
-                _context.SaveChanges();
-            }*/
-
             //Make sure the form was filled correctly. Display errors if not.
             if (ModelState.IsValid)
             {
+                //Add the inputted movie to the database
                 _context.Movies.Add(movie);
                 _context.SaveChanges();
                 return View("MovieList", _repository.Movies);
@@ -73,30 +70,40 @@ namespace Assignment3.Controllers
             return View(_repository.Movies);
         }
 
+        //Action for deleting a movie
         public IActionResult DeleteMovie(int movieId)
         {
+            //create the instance of a Movie and set it equal to the movie that was selected
             Movie movieDelete = _context.Movies.Where(x => x.MovieId == movieId).FirstOrDefault();
 
+            //remove it from the database
             _context.Movies.Remove(movieDelete);
             _context.SaveChanges();
 
             return View("MovieList", _repository.Movies);
         }
 
+        //Action for the Edit movie page
         [HttpGet]
         public IActionResult EditMovie(int Id)
         {
+            //Create an instance of a Movie and set it equal to the movie they selected so that the edit form
+            //gets auto populated with data
             Movie tempMovie = _context.Movies.Where(x => x.MovieId == Id).FirstOrDefault();
             return View(tempMovie);
         }
 
+        //Action for Editing a movie
         [HttpPost]
         public IActionResult EditMovie(Movie movie)
         {
+            //ensure the inputs are valid
             if (ModelState.IsValid)
             {
+                //instance of a Movie set equal to the movie that was selected
                 Movie movieUpdate = _context.Movies.Where(x => x.MovieId == movie.MovieId).FirstOrDefault();
 
+                //Update all the info from the user form
                 movieUpdate.Category = movie.Category;
                 movieUpdate.Title = movie.Title;
                 movieUpdate.Year = movie.Year;

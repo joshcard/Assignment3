@@ -4,8 +4,9 @@
 
 @model Assignment3.Models.Movie
 
-
+<!--Form to edit a movie-->
 <form asp-action="EditMovie" method="post">
+    <!--Hidden input so that the MovieId gets passed-->
     <input type="hidden" value="@Model.MovieId" name="MovieId"/>
 
     <div>
